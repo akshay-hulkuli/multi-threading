@@ -17,7 +17,7 @@ class Runner4 extends Thread {
             try{
                 Thread.sleep(100);
             } catch (InterruptedException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             System.out.println("Runner1 : " + i);
         }
@@ -31,7 +31,7 @@ class Runner5 extends Thread {
             try{
                 Thread.sleep(100);
             } catch (InterruptedException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
             System.out.println("Runner2 : " + i);
         }
