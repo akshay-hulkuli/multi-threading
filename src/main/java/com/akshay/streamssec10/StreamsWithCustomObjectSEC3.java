@@ -1,9 +1,6 @@
 package com.akshay.streamssec10;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class StreamsWithCustomObjectSEC3 {
@@ -38,7 +35,26 @@ public class StreamsWithCustomObjectSEC3 {
         System.out.println("-------------");
 
         books.stream().filter(book -> book.getTitle().split(" ").length == 2).forEach(System.out::println);
+        System.out.println("-------------");
 
+        // External and Internal Iteration
+
+        // External Iterator -->
+        List<String> titles = new ArrayList<>();
+
+        // Both of ways are sequential
+
+        Iterator<Book> iterator = books.iterator();
+        while(iterator.hasNext()) {
+            Book book = iterator.next();
+            titles.add(book.getTitle());
+        }
+        for(Book book : books) {
+            titles.add(book.getTitle());
+        }
+
+        // Internal iteration
+        List<String> titles2 = books.stream().map(Book::getTitle).collect(Collectors.toList());
     }
 }
 
