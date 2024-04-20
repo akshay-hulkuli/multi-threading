@@ -24,7 +24,14 @@ public class CompletableFutureExampleSEC4 {
         try (ExecutorService cpuService = Executors.newFixedThreadPool(5);
              ExecutorService ioService = Executors.newFixedThreadPool(5)) {
             CompletableFuture
-                    .supplyAsync(() -> "Hello World", cpuService)
+                    .supplyAsync(() -> {
+                        try {
+                            Thread.sleep(10000);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        return "Hello World";
+                    }, cpuService)
                     .thenApplyAsync(s -> s + "hello", ioService)
                     .thenApply(s -> s.toUpperCase())
                     .thenAccept(System.out::println);
